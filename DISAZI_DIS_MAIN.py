@@ -258,8 +258,12 @@ def main(args):
             # your validation_steps             
             
         else:
-            csv_file=("/data2/share/STEAD/merged.csv")
-            file_name="/data2/share/STEAD/merged.hdf5"
+			try:
+				csv_file="/data2/share/STEAD/merged.csv"
+				file_name="/data2/share/STEAD/merged.hdf5"
+			except:
+				file_name=args.data_dir
+				csv_file=args.csv_dir             
             df = pd.read_csv(csv_file)
             # shuffle
             df = df.sample(frac=1,random_state=0)
