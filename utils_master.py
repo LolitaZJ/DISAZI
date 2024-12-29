@@ -1005,7 +1005,20 @@ class DataGenerator_azi(Sequence):
         #------------------------#    
         for c, evi in enumerate(batch_index):
             dataset = dtfl.get('data/'+str(evi)) 
-            baz[c] = dataset.attrs['back_azimuth_deg']
+            event_lat=dataset.attrs['source_latitude']
+            event_lon=dataset.attrs['source_longitude']
+            station_lat=dataset.attrs['receiver_latitude']
+            station_lon=dataset.attrs['receiver_longitude']
+            
+            distance_m, azimuth, back_azimuth = obspy.geodetics.base.gps2dist_azimuth(
+                                                                        float(event_lat), 
+                                                                        float(event_lon),
+                                                                        float(station_lat), 
+                                                                        float(station_lon), 
+                                                                        a=6378137.0, 
+                                                                        f=0.0033528106647474805)
+
+            baz[c] = back_azimuth
             train_x[c,:,:3] = np.array(dataset)
                 
         baz=[ [math.sin(baz_deg*math.pi/180),math.cos(baz_deg*math.pi/180)] for baz_deg in baz ]
