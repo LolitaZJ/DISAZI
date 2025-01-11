@@ -439,11 +439,11 @@ class GENDATA_dis(Sequence):
             # std
             std_data = np.std(data1, axis=0, keepdims=True)
             std_data[std_data == 0] = 1
-            data1 /= std_data
+            data1 /= np.max(std_data)
             # max
             x_max=np.max(abs(data1),axis=0)
             x_max[x_max == 0]=1
-            data2[i,:,:]=data1/x_max 
+            data2[i,:,:]=data1/np.max(x_max) 
             
         return data2 
     
@@ -558,11 +558,11 @@ class GENDATA_azi_tp(Sequence):
             # std
             std_data = np.std(data1, axis=0, keepdims=True)
             std_data[std_data == 0] = 1
-            data1 /= std_data
+            data1 /= np.max(std_data)
             # max
             x_max=np.max(abs(data1),axis=0)
             x_max[x_max == 0]=1
-            data2[i,:,:]=data1/x_max 
+            data2[i,:,:]=data1/np.max(x_max) 
             
         return data2 
     
@@ -659,11 +659,11 @@ class GENDATA_azi(Sequence):
             # std
             std_data = np.std(data1, axis=0, keepdims=True)
             std_data[std_data == 0] = 1
-            data1 /= std_data
+            data1 /= np.max(std_data)
             # max
             x_max=np.max(abs(data1),axis=0)
             x_max[x_max == 0]=1
-            data2[i,:,:]=data1/x_max 
+            data2[i,:,:]=data1/np.max(x_max) 
             
         return data2 
     
@@ -825,11 +825,11 @@ def normal3(data):
         # std
         std_data = np.std(data1, axis=0, keepdims=True)
         std_data[std_data == 0] = 1
-        data1 /= std_data
+        data1 /= np.max(std_data)
         # max
         x_max=np.max(abs(data1),axis=0)
         x_max[x_max == 0]=1
-        data2[i,:,:]=data1/x_max 
+        data2[i,:,:]=data1/np.max(x_max) 
         
     return data2 
 
@@ -890,11 +890,11 @@ class DataGenerator_dis(Sequence):
             # std
             std_data = np.std(data1, axis=0, keepdims=True)
             std_data[std_data == 0] = 1
-            data1 /= std_data
+            data1 /= np.max(std_data)
             # max
             x_max=np.max(abs(data1),axis=0)
             x_max[x_max == 0]=1
-            data2[i,:,:]=data1/x_max 
+            data2[i,:,:]=data1/np.max(x_max) 
             
         return data2 
     
@@ -987,11 +987,11 @@ class DataGenerator_azi(Sequence):
             # std
             std_data = np.std(data1, axis=0, keepdims=True)
             std_data[std_data == 0] = 1
-            data1 /= std_data
+            data1 /= np.max(std_data)
             # max
             x_max=np.max(abs(data1),axis=0)
             x_max[x_max == 0]=1
-            data2[i,:,:]=data1/x_max 
+            data2[i,:,:]=data1/np.max(x_max) 
             
         return data2 
     
